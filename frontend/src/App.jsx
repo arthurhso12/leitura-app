@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import { useEffect } from "react";
+import api from "./services/api";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
-  );
+
+  useEffect(() => {
+    console.log("Testando conexão...");
+
+    api.get("/")
+      .then(res => console.log("RESPOSTA:", res.data))
+      .catch(err => console.log("ERRO:", err));
+  }, []);
+
+  return <h1>Frontend conectado 🚀</h1>;
 }
 
 export default App;

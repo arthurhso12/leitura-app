@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Servidor rodando");
+});
+
 const app = express();
 
 app.use(cors());
@@ -17,6 +23,11 @@ app.use("/user", require("./routes/user.routes"));
 app.use("/books", require("./routes/book.routes"));
 app.use("/reading", require("./routes/reading.routes"));
 
+app.get("/", (req, res) => {
+  res.send("Backend funcionando 🚀");
+});
+
 app.listen(process.env.PORT || 5000, () =>
   console.log("URI:", process.env.MONGO_URI)
+
 );
